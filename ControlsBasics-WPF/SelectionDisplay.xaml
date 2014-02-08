@@ -44,7 +44,7 @@
                 </TransformGroup>
             </Grid.RenderTransform>
             <TextBlock x:Name="messageTextBlock" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">You selected item #14</TextBlock>
-            <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="Images/Doge.png" Stretch="None" Margin="0 0 0 4"/>
+            <Image x:Name="messageImage" HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="Images/Doge.png" Stretch="Uniform"  Margin="5 5 5 5"/>
         </Grid>
     </Grid>
 </UserControl>

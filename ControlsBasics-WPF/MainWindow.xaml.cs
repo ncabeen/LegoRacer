@@ -22,17 +22,24 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
     /// </summary>
     public partial class MainWindow
     {
+        public static readonly DependencyProperty PageUpEnabledProperty = DependencyProperty.Register(
+            "PageUpEnabled", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
+
+        public static readonly DependencyProperty PageDownEnabledProperty = DependencyProperty.Register(
+            "PageDownEnabled", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
+
         public static readonly DependencyProperty PageLeftEnabledProperty = DependencyProperty.Register(
-            "PageLeftEnabled", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
+           "PageLeftEnabled", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
 
         public static readonly DependencyProperty PageRightEnabledProperty = DependencyProperty.Register(
-            "PageRightEnabled", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
+           "PageRightEnabled", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
 
         private const double ScrollErrorMargin = 0.001;
 
         private const int PixelScrollByAmount = 20;
 
-        private const int NumCarComponents = 4;
+        public const int NumCarComponents = 4;
+        public string[] labels = { "Chassis", "Wheel", "Body", "Engine" }; 
 
         private readonly KinectSensorChooser sensorChooser;
 
@@ -60,7 +67,6 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             scrollViewer.ScrollToVerticalOffset(100);
 
             //Label array
-            string[] labels = new string[NumCarComponents] { "Chassis", "Wheel", "Body", "Engine" }; 
 
             //uri array to images 
             Uri[] imageURIs = new Uri[NumCarComponents] {new Uri("../Images/Chassis.png",UriKind.Relative), new Uri("../Images/Wheel.png",UriKind.Relative), 
@@ -87,6 +93,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             scrollViewer.ScrollChanged += (o, e) => this.UpdatePagingButtonState();
         }
 
+
         /// <summary>
         /// CLR Property Wrappers for PageLeftEnabledProperty
         /// </summary>
@@ -104,7 +111,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         }
 
         /// <summary>
-        /// CLR Property Wrappers for PageRightEnabledProperty
+        /// CLR Property Wrappers for PageLeftEnabledProperty
         /// </summary>
         public bool PageRightEnabled
         {
@@ -116,6 +123,38 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             set
             {
                 this.SetValue(PageRightEnabledProperty, value);
+            }
+        }
+       
+        /// <summary>
+        /// CLR Property Wrappers for PageLeftEnabledProperty
+        /// </summary>
+        public bool PageDownEnabled
+        {
+            get
+            {
+                return (bool)GetValue(PageDownEnabledProperty);
+            }
+
+            set
+            {
+                this.SetValue(PageDownEnabledProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// CLR Property Wrappers for PageRightEnabledProperty
+        /// </summary>
+        public bool PageUpEnabled
+        {
+            get
+            {
+                return (bool)GetValue(PageUpEnabledProperty);
+            }
+
+            set
+            {
+                this.SetValue(PageUpEnabledProperty, value);
             }
         }
 
@@ -187,7 +226,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         private void KinectTileButtonClick(object sender, RoutedEventArgs e)
         {
             var button = (KinectTileButton)e.OriginalSource;
-            var selectionDisplay = new SelectionDisplay(button.Label as string);
+            var selectionDisplay = new SelectionDisplay(Array.IndexOf(labels, button.Label as String));
             this.kinectRegionGrid.Children.Add(selectionDisplay);
             e.Handled = true;
         }
@@ -199,7 +238,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         /// <param name="e">Event arguments</param>
         private void PageRightButtonClick(object sender, RoutedEventArgs e)
         {
-            scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset + PixelScrollByAmount);
+            scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset + PixelScrollByAmount);
         }
 
         /// <summary>
@@ -209,7 +248,17 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         /// <param name="e">Event arguments</param>
         private void PageLeftButtonClick(object sender, RoutedEventArgs e)
         {
+            scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset - PixelScrollByAmount);
+        }
+
+        private void PageUpButtonClick(object sender, RoutedEventArgs e)
+        {
             scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - PixelScrollByAmount);
+        }
+
+        private void PageDownButtonClick(object sender, RoutedEventArgs e)
+        {
+            scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset + PixelScrollByAmount);
         }
 
         /// <summary>
@@ -219,7 +268,12 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         {
             this.PageLeftEnabled = scrollViewer.HorizontalOffset > ScrollErrorMargin;
             this.PageRightEnabled = scrollViewer.HorizontalOffset < scrollViewer.ScrollableWidth - ScrollErrorMargin;
+            this.PageUpEnabled = scrollViewer.VerticalOffset > ScrollErrorMargin;
+            this.PageDownEnabled = scrollViewer.VerticalOffset < scrollViewer.ScrollableHeight - ScrollErrorMargin;
         }
+
+
+
 
     }
 }

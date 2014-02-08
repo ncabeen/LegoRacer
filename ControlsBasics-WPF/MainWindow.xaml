@@ -129,8 +129,8 @@
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <local:KinectHoverButton Grid.Column="0" Style="{StaticResource KinectHoverButtonScrollUpStyle}" ButtonBase.Click="PageLeftButtonClick" IsEnabled="{Binding PageLeftEnabled, ElementName=ControlsBasicsWindow}"/>
-                    <local:KinectHoverButton Grid.Column="2" Style="{StaticResource KinectHoverButtonScrollDownStyle}" ButtonBase.Click="PageRightButtonClick" IsEnabled="{Binding PageRightEnabled, ElementName=ControlsBasicsWindow}"/>
+                    <local:KinectHoverButton Grid.Column="0" Style="{StaticResource KinectHoverButtonScrollUpStyle}" Click="PageUpButtonClick" IsEnabled="{Binding PageUpEnabled, ElementName=ControlsBasicsWindow}"/>
+                    <local:KinectHoverButton Grid.Column="2" Style="{StaticResource KinectHoverButtonScrollDownStyle}" Click="PageDownButtonClick" IsEnabled="{Binding PageDownEnabled, ElementName=ControlsBasicsWindow}"/>
                 </Grid>
                 <k:KinectScrollViewer Grid.Row="0" x:Name="scrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Right" Width="230">
                     <WrapPanel VerticalAlignment="Top"  x:Name="wrapPanel" Orientation="Vertical" ButtonBase.Click="KinectTileButtonClick" Height="1828">
