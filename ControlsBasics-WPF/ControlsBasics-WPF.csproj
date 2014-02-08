@@ -97,7 +97,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ColoredLegoCar.mtl" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -115,9 +114,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ColoredLegoCar.obj" />
+    <Resource Include="bodywork.obj" />
+    <Resource Include="chassis.obj" />
     <Resource Include="Images\Kinect.ico" />
     <Resource Include="Images\Logo.png" />
+    <Resource Include="Wheel_front-left.obj" />
+    <Resource Include="Wheel_front-right.obj" />
+    <Resource Include="Wheel_rear-left.obj" />
+    <Resource Include="Wheel_rear-right.obj" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Doge.jpg" />
