@@ -126,16 +126,16 @@
 
                 <Viewport3D ClipToBounds="True" Margin="0,0,250,120">
                     <Viewport3D.Camera>
-                        <PerspectiveCamera FieldOfView="60" FarPlaneDistance="388.01204752138108" LookDirection="0,0,-149.719260451565" NearPlaneDistance="0.1" Position="3.17112350463866,1.90734864347064E-06,139.007353064785" UpDirection="0,1,0"/>
+                        <PerspectiveCamera FieldOfView="60" FarPlaneDistance="4000" LookDirection="-300,0,300" NearPlaneDistance="0.1" Position="100,0,-100" UpDirection="-0.8,0.1,0.5"/>
                     </Viewport3D.Camera>
                     <ModelVisual3D x:Name="World">
                         <ModelVisual3D.Transform>
                             <Transform3DGroup>
                                 <TranslateTransform3D OffsetZ="0" OffsetX="0" OffsetY="0"/>
                                 <ScaleTransform3D ScaleZ="1" ScaleY="1" ScaleX="1"/>
-                                <RotateTransform3D d:EulerAngles="129.85,-25.975,-20.08">
+                                <RotateTransform3D d:EulerAngles="0,0,0">
                                     <RotateTransform3D.Rotation>
-                                        <AxisAngleRotation3D Axis="0.95,-0.276,0.143" Angle="127.521"/>
+                                        <AxisAngleRotation3D Axis="0,0,0" Angle="180"/>
                                     </RotateTransform3D.Rotation>
                                 </RotateTransform3D>
                                 <TranslateTransform3D OffsetZ="0" OffsetX="0" OffsetY="0"/>
@@ -157,6 +157,19 @@
                             </ModelVisual3D.Content>
                         </ModelVisual3D>
                         <ModelVisual3D x:Name="DefaultGroup">
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <TranslateTransform3D OffsetZ="0" OffsetX="0" OffsetY="0"/>
+                                    <ScaleTransform3D ScaleZ="1" ScaleY="1" ScaleX="1"/>
+                                    <RotateTransform3D d:EulerAngles="0,0,0">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Axis="0,0,0" Angle="180"/>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <TranslateTransform3D OffsetZ="0" OffsetX="0" OffsetY="0"/>
+                                    <TranslateTransform3D OffsetZ="0" OffsetX="0" OffsetY="0"/>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
                             <ModelVisual3D x:Name="ShapeIndexedFaceSet_1928_ShapeIndexedFaceSet_3859Container">
                                 <ModelVisual3D.Content>
                                     <GeometryModel3D x:Name="ShapeIndexedFaceSet_1928_ShapeIndexedFaceSet_3859" d:Bounds="-29.3352508544922,-1.55400002002716,-9.52999973297119,3.09200096130371,3.04500007629395,0">

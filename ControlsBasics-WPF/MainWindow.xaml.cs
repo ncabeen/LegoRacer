@@ -16,6 +16,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using System.Windows.Controls;
+    using System.Windows.Media.Media3D;
 
     /// <summary>
     /// Interaction logic for MainWindow
@@ -91,6 +92,20 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             // Bind listner to scrollviwer scroll position change, and check scroll viewer position
             this.UpdatePagingButtonState();
             scrollViewer.ScrollChanged += (o, e) => this.UpdatePagingButtonState();
+
+            //this.DefaultGroup.Transform = new Trans
+
+        }
+
+        Matrix3D CalculateRotationMatrix(double x, double y, double z)
+        {
+            Matrix3D matrix = new Matrix3D();
+
+            matrix.Rotate(new Quaternion(new Vector3D(1, 0, 0), x));
+            matrix.Rotate(new Quaternion(new Vector3D(0, 1, 0) * matrix, y));
+            matrix.Rotate(new Quaternion(new Vector3D(0, 0, 1) * matrix, z));
+
+            return matrix;
         }
 
 
