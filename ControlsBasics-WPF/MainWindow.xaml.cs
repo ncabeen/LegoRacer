@@ -32,6 +32,8 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
 
         private const int PixelScrollByAmount = 20;
 
+        private const int NumCarComponents = 4;
+
         private readonly KinectSensorChooser sensorChooser;
 
         /// <summary>
@@ -54,13 +56,24 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             // Clear out placeholder content
             this.wrapPanel.Children.Clear();
 
+            scrollViewer.ScrollToTop();
+            scrollViewer.ScrollToVerticalOffset(100);
+
+            //Label array
+            string[] labels = new string[NumCarComponents] { "Chassis", "Wheel", "Body", "Engine" }; 
+
+            //uri array to images 
+            Uri[] imageURIs = new Uri[NumCarComponents] {new Uri("../Images/Chassis.png",UriKind.Relative), new Uri("../Images/Wheel.png",UriKind.Relative), 
+                                                      new Uri("../Images/Body.png",UriKind.Relative), new Uri("../Images/Engine.png",UriKind.Relative)};
+
             // Add in display content
-            for (var index = 0; index < 300; ++index)
+            for (var index = 0; index < NumCarComponents; ++index)
             {
-                var button = new KinectTileButton { Label = (index + 1).ToString(CultureInfo.CurrentCulture) };
+                var button = new KinectTileButton { Label = labels[index] };
                 var brush = new ImageBrush();  //D:\Kinect\ControlsBasics-WPF\Images
-                brush.ImageSource = new BitmapImage(new Uri("../Images/Doge.png", UriKind.Relative));
+                brush.ImageSource = new BitmapImage(imageURIs[index]);
                 button.Background = brush;
+                
                 /*
                 Image img = new Image();
                 img.Source = new BitmapImage(new Uri("..Images/Doge.jpg", UriKind.Relative));

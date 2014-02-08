@@ -105,47 +105,50 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <!--<RowDefinition Height="Auto" />
+            -->
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
+        <!--
         <Grid Grid.Row="0"  Margin="10 0 10 20">
             <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="Images\Logo.png" Stretch="None" Margin="0 0 0 4"/>
-            <k:KinectUserViewer k:KinectRegion.KinectRegion="{Binding ElementName=kinectRegion}" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" />
-            <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" />
             <TextBlock HorizontalAlignment="Right" Margin="0 0 -1 0" VerticalAlignment="Bottom" Foreground="{StaticResource MediumGreyBrush}" FontSize="18">Controls Basics</TextBlock>
         </Grid>
-
-        <k:KinectRegion Grid.Row="1" x:Name="kinectRegion">
+-->
+        <k:KinectRegion Grid.Row="2" x:Name="kinectRegion">
             <Grid x:Name="kinectRegionGrid" Margin="10,20,10,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="170" />
+                    <!--<RowDefinition Height="170" /> -->
                 </Grid.RowDefinitions>
-                <k:KinectScrollViewer Grid.Row="0" Name="scrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Right" Width="220" Margin="0,0,100,0">
-                    <WrapPanel VerticalAlignment="Top" x:Name="wrapPanel" Orientation="Vertical" k:KinectTileButton.Click="KinectTileButtonClick">
-                        <!-- items for design layout.  They will be replaced at runtime. -->
-                        <k:KinectTileButton Label="1"/>
-                        <k:KinectTileButton Label="2"/>
-                        <k:KinectTileButton Label="3"/>
-                        <k:KinectTileButton Label="4"/>
+                <k:KinectUserViewer k:KinectRegion.KinectRegion="{Binding ElementName=kinectRegion}" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" />
+                <Grid Grid.Row="0" Height="100" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0, 10, 250, 10" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <local:KinectHoverButton Grid.Column="0" Style="{StaticResource KinectHoverButtonScrollUpStyle}" ButtonBase.Click="PageLeftButtonClick" IsEnabled="{Binding PageLeftEnabled, ElementName=ControlsBasicsWindow}"/>
+                    <local:KinectHoverButton Grid.Column="2" Style="{StaticResource KinectHoverButtonScrollDownStyle}" ButtonBase.Click="PageRightButtonClick" IsEnabled="{Binding PageRightEnabled, ElementName=ControlsBasicsWindow}"/>
+                </Grid>
+                <k:KinectScrollViewer Grid.Row="0" x:Name="scrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Right" Width="230">
+                    <WrapPanel VerticalAlignment="Top"  x:Name="wrapPanel" Orientation="Vertical" ButtonBase.Click="KinectTileButtonClick" Height="1828">
+                        <!--
                         <k:KinectTileButton Label="5"/>
                         <k:KinectTileButton Label="6"/>
                         <k:KinectTileButton Label="7"/>
                         <k:KinectTileButton Label="8"/>
                         <k:KinectTileButton Label="9"/>
                         <k:KinectTileButton Label="10"/>
+                        -->
+                        <!-- items for design layout.  They will be replaced at runtime. -->
+                        <k:KinectTileButton Label="1"/>
+                        <k:KinectTileButton Label="2"/>
+                        <k:KinectTileButton Label="3"/>
+                        <k:KinectTileButton Label="4"/>
                     </WrapPanel>
                 </k:KinectScrollViewer>
-                <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0, 10, 0, 10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <local:KinectHoverButton Grid.Column="0" Style="{StaticResource KinectHoverButtonScrollUpStyle}" Click="PageLeftButtonClick" IsEnabled="{Binding ElementName=ControlsBasicsWindow, Path=PageLeftEnabled}"/>
-                    <local:KinectHoverButton Grid.Column="2" Style="{StaticResource KinectHoverButtonScrollDownStyle}" Click="PageRightButtonClick" IsEnabled="{Binding ElementName=ControlsBasicsWindow, Path=PageRightEnabled}"/>
-                </Grid>
             </Grid>
         </k:KinectRegion>
     </Grid>
