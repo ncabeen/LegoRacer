@@ -102,6 +102,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Wheel_front-left1.mtl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.Kinect.Toolkit.Controls\Microsoft.Kinect.Toolkit.Controls.csproj">
@@ -119,6 +120,7 @@
     <Resource Include="Images\Kinect.ico" />
     <Resource Include="Images\Logo.png" />
     <Resource Include="Wheel_front-left.obj" />
+    <Resource Include="Wheel_front-left1.obj" />
     <Resource Include="Wheel_front-right.obj" />
     <Resource Include="Wheel_rear-left.obj" />
     <Resource Include="Wheel_rear-right.obj" />
