@@ -102,6 +102,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Wheel_front-left1.mtl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.Kinect.Toolkit.Controls\Microsoft.Kinect.Toolkit.Controls.csproj">
@@ -137,10 +138,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Engine.png" />
-    <Resource Include="Images\Wheel.png" />
+    <Resource Include="Images\Wheel1.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Body.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Wheel2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Wheel4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Wheel3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

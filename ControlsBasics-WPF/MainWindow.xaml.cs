@@ -39,8 +39,10 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
 
         private const int PixelScrollByAmount = 20;
 
-        public const int NumCarComponents = 4;
-        public string[] labels = { "Chassis", "Wheel", "Body", "Engine" }; 
+        private double theta = 0.0;
+
+        public const int NumCarComponents = 6;
+        public string[] labels = { "Chassis", "Body", "Wheel 1", "Wheel 2", "Wheel 3", "Wheel 4"}; 
 
         private readonly KinectSensorChooser sensorChooser;
 
@@ -70,8 +72,9 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             //Label array
 
             //uri array to images 
-            Uri[] imageURIs = new Uri[NumCarComponents] {new Uri("../Images/Chassis.png",UriKind.Relative), new Uri("../Images/Wheel.png",UriKind.Relative), 
-                                                      new Uri("../Images/Body.png",UriKind.Relative), new Uri("../Images/Engine.png",UriKind.Relative)};
+            Uri[] imageURIs = new Uri[NumCarComponents] {new Uri("../Images/Chassis.png",UriKind.Relative), new Uri("../Images/Body.png",UriKind.Relative), 
+                                                         new Uri("../Images/Wheel1.png",UriKind.Relative), new Uri("../Images/Wheel2.png",UriKind.Relative), 
+                                                         new Uri("../Images/Wheel3.png",UriKind.Relative), new Uri("../Images/Wheel4.png",UriKind.Relative)};
 
             // Add in display content
             for (var index = 0; index < NumCarComponents; ++index)
@@ -92,6 +95,9 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             // Bind listner to scrollviwer scroll position change, and check scroll viewer position
             this.UpdatePagingButtonState();
             scrollViewer.ScrollChanged += (o, e) => this.UpdatePagingButtonState();
+
+            Camera.LookDirection = new Vector3D(60 * -Math.Sin(0), 60 * -Math.Cos(0), -60);
+            Camera.Position = new Point3D(60 * Math.Sin(0), 60 * Math.Cos(0), 60);
 
             //this.DefaultGroup.Transform = new Trans
 
@@ -241,11 +247,25 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         private void KinectTileButtonClick(object sender, RoutedEventArgs e)
         {
             var button = (KinectTileButton)e.OriginalSource;
-            var selectionDisplay = new SelectionDisplay(Array.IndexOf(labels, button.Label as String));
-            this.kinectRegionGrid.Children.Add(selectionDisplay);
+            int index = Array.IndexOf(labels, button.Label as String);
+
+            SolidColorBrush[] carPartBrushes = {ChassisBrush, BodyWorkBrush, Wheel_BackLeftBrush, Wheel_BackRightBrush, Wheel_FrontLeftBrush, Wheel_FrontRightBrush  };
+
+
+            if (carPartBrushes[index].Opacity != 1)
+            {
+                carPartBrushes[index].Opacity = 1;
+            }
+            else
+            {
+                carPartBrushes[index].Opacity = 0;
+            }
+
+            //display selection screen
+            //var selectionDisplay = new SelectionDisplay(Array.IndexOf(labels, button.Label as String));
+            //this.kinectRegionGrid.Children.Add(selectionDisplay);
             e.Handled = true;
         }
-
         /// <summary>
         /// Handle paging right (next button).
         /// </summary>
@@ -253,7 +273,12 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         /// <param name="e">Event arguments</param>
         private void PageRightButtonClick(object sender, RoutedEventArgs e)
         {
-            scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset + PixelScrollByAmount);
+            //scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset + PixelScrollByAmount);
+            theta= theta + .01;
+
+            Camera.LookDirection = new Vector3D(60 * -Math.Sin(theta),60*-Math.Cos(theta),-60);
+            Camera.Position = new Point3D(60* Math.Sin(theta),60*Math.Cos(theta), 60);
+
         }
 
         /// <summary>
@@ -263,7 +288,10 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         /// <param name="e">Event arguments</param>
         private void PageLeftButtonClick(object sender, RoutedEventArgs e)
         {
-            scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset - PixelScrollByAmount);
+            theta = theta - .01;
+
+            Camera.LookDirection = new Vector3D(60 * -Math.Sin(theta), 60 * -Math.Cos(theta), -60);
+            Camera.Position = new Point3D(60 * Math.Sin(theta), 60 * Math.Cos(theta), 60);
         }
 
         private void PageUpButtonClick(object sender, RoutedEventArgs e)

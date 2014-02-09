@@ -1,6 +1,5 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
 [Bb]in/
-[Oo]bj/
 
 # mstest test results
 TestResults
@@ -21,7 +20,6 @@ x64/
 *_p.c
 *.ilk
 *.meta
-*.obj
 *.pch
 *.pdb
 *.pgc
@@ -90,7 +88,6 @@ AppPackages/
 
 # Others
 [Bb]in
-[Oo]bj
 sql
 TestResults
 [Tt]est[Rr]esult*

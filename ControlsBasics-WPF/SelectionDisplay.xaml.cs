@@ -18,9 +18,10 @@
         public SelectionDisplay(int itemId)
         {
             this.InitializeComponent();
-            const int NumCarComponents =4;
-            Uri[] imageURIs = {new Uri("../Images/Chassis.png",UriKind.Relative), new Uri("../Images/Wheel.png",UriKind.Relative), 
-                                                          new Uri("../Images/Body.png",UriKind.Relative), new Uri("../Images/Engine.png",UriKind.Relative)};
+            const int NumCarComponents =6;
+            Uri[] imageURIs = new Uri[NumCarComponents] {new Uri("../Images/Chassis.png",UriKind.Relative), new Uri("../Images/Body.png",UriKind.Relative), 
+                                                         new Uri("../Images/Wheel1.png",UriKind.Relative), new Uri("../Images/Wheel2.png",UriKind.Relative), 
+                                                         new Uri("../Images/Wheel3.png",UriKind.Relative), new Uri("../Images/Wheel4.png",UriKind.Relative)};
 
             this.messageTextBlock.Text = itemId.ToString();
 
